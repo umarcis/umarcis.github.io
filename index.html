@@ -3,447 +3,975 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Umar - Personal Website</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta name="description" content="Portfolio of Muhammad Umar, Computer Engineering graduate student and FPGA Design &amp; Verification Engineer focused on RTL design, SystemVerilog/UVM verification, FPGA implementation, and hardware debugging.">
+  <title>Muhammad Umar | FPGA Design &amp; Verification Engineer</title>
   <style>
-    .logo-image {
-    width: 75px; /* Adjust the width as needed */
-    height: 90px; /* Adjust the height to match the width for a perfect circle */
-    /* border-radius: 50%; Makes the image circular */
-  }
-  .logo-image1 {
-    width: 250px; /* Adjust the width as needed */
-    height: 200px; /* Adjust the height to match the width for a perfect circle */
-    border-radius: 50%; /* Makes the image circular */
-  }
-  .logo-image2 {
-    width: 250px; /* Adjust the width as needed */
-    height: 190px; /* Adjust the height to match the width for a perfect circle */
-  }
-  .logo-image3 {
-    width: 250px; /* Adjust the width as needed */
-    height: 230px; /* Adjust the height to match the width for a perfect circle */
-    border-radius: 50%; /* Makes the image circular */
-  }
-  .education-section {
-      background: url('edu.png') no-repeat center center fixed; 
-      background-size: cover;
-      padding: 100px 0; /* Adjust padding as needed */
+    :root {
+      --ink: #111827;
+      --muted: #526071;
+      --line: #d9e2ec;
+      --paper: #ffffff;
+      --soft: #f6f8fb;
+      --blue: #2457a6;
+      --teal: #0f766e;
+      --green: #1f7a4d;
+      --gold: #b98221;
+      --deep: #0b3d3a;
+      --shadow: 0 18px 42px rgba(17, 24, 39, 0.1);
+      --shadow-soft: 0 10px 28px rgba(17, 24, 39, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fbfcfe;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    ::selection {
+      color: #ffffff;
+      background: var(--teal);
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.94);
+      border-top: 4px solid var(--teal);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      padding: 8px 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .nav-links a:last-child {
+      color: #ffffff;
+      background: var(--teal);
+      padding: 9px 14px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.18);
+    }
+
+    .nav-links a:last-child:hover {
+      color: #ffffff;
+      background: #0d665f;
+    }
+
+    .hero {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 248, 250, 0.98) 58%, rgba(234, 247, 244, 0.98) 100%),
+        #fbfcfe;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+      padding: 92px 0 76px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 7px 12px;
+      color: #0b5f58;
+      background: #e6f5f2;
+      border: 1px solid #b9dfd9;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 18px;
+      color: #0f172a;
+      font-size: 3.05rem;
+      line-height: 1.06;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      margin-top: 12px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      border-radius: 999px;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 24px;
+      color: #344054;
+      font-size: 1.15rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 26px 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .btn.primary {
+      color: #ffffff;
+      background: var(--blue);
+      box-shadow: 0 10px 24px rgba(36, 87, 166, 0.22);
+    }
+
+    .btn.secondary {
+      color: var(--blue);
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chips li {
+      padding: 8px 12px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #344054;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .profile-panel {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .profile-top {
+      padding: 24px;
+      background: linear-gradient(135deg, #e8f4ff, #eaf7f4);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .profile-top strong {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    .profile-top span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .metric-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .metric {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      border-left: 4px solid transparent;
+    }
+
+    .metric:last-child {
+      border-bottom: 0;
+    }
+
+    .metric:nth-child(1) {
+      border-left-color: var(--blue);
+    }
+
+    .metric:nth-child(2) {
+      border-left-color: var(--teal);
+    }
+
+    .metric:nth-child(3) {
+      border-left-color: var(--gold);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.55rem;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    section.alt {
+      background:
+        linear-gradient(180deg, #f8fafc 0%, var(--soft) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      height: 100%;
+      padding: 22px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow-soft);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #b8c5d6;
+      box-shadow: 0 18px 38px rgba(17, 24, 39, 0.12);
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .card ul,
+    .timeline ul {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: #344054;
+    }
+
+    .card li,
+    .timeline li {
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 22px;
+      padding: 24px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .timeline-date {
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .project-meta span {
+      padding: 5px 9px;
+      color: #1f365f;
+      background: #eef4ff;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .skill-list span {
+      padding: 7px 10px;
+      background: #edf8f5;
+      border: 1px solid #c0e0d9;
+      border-radius: 999px;
+      color: #0b5f58;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .certificate {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .certificate::before {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 4px;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+      border-radius: 999px;
+    }
+
+    .certificate a {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 800;
+    }
+
+    .contact-band {
+      background:
+        linear-gradient(135deg, rgba(11, 61, 58, 0.96), rgba(22, 78, 72, 0.96)),
+        var(--deep);
+      color: #ffffff;
+    }
+
+    .contact-band h2,
+    .contact-band p {
+      color: #ffffff;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-card {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 8px;
+    }
+
+    .contact-card a {
+      color: #dff9f3;
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 24px 0;
+      color: var(--muted);
+      text-align: center;
+      background: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .hero-grid,
+      .grid.two,
+      .grid.three,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        padding: 58px 0 54px;
+      }
+
+      h1 {
+        font-size: 2.35rem;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links {
+        gap: 12px;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.65rem;
+      }
+
+      section {
+        padding: 56px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent" style="background-color: rgba(6, 36, 81, 0.599);">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <!-- <img src="umar_gif.gif" alt="Logo" class="logo-image"> -->
-              </a>
-          <a class="navbar-brand" href="#"><h3>Muhammad Umar</h3><p><b>Computer Systems Engineer</b></p></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-              <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-              <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-              <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-              <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
-              <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
-          </div>
-        </div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Muhammad Umar portfolio home">
+        Muhammad Umar
+        <span>FPGA Design &amp; Verification Engineer | MS Computer Engineering</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#professional-experience">Professional</a>
+        <a href="#university-experience">University</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
       </nav>
-      
-      
+    </div>
   </header>
 
-  <section id="about" class="py-5" style="background: url('section_about_bg.jpg') no-repeat center center fixed; background-size: cover;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-           
-        </div>
-        <div class="col-md-6 rounded-sm" style="background-color: rgba(6, 36, 81, 0.599);">
-          <h1 class="text-center pt-2" style="color: aliceblue;">About Me</h1>
-          <!-- <hr style= "border-color: aliceblue;"> -->
-          <div class="col-md-12 text-center pb-4 pl-5 pr-5 mb-3">
-            <hr style= "border-color: aliceblue;" class="ml-5 mr-5 pb-2">
-            <p style="color: aliceblue;">I am a Design Verification Engineer at CoMIRA Solutions Inc, working since December 2023. I hold a Bachelor of Engineering in Computer Systems from NED University of Engineering & Technology. My expertise includes computer vision and FPGA development. In my final year project, I designed a Structural Health Monitoring System on FPGA using Verilog for computer vision and FPGA-based inference. Currently, I am working on an Ethernet project, having studied various clauses of the IEEE 802.3 specification, and am actively involved in R&D. I am dedicated to excellence and passionate about making a meaningful impact in the semiconductor industry.</p>
-            <!-- <p style="color: aliceblue;">I'm fueled by curiosity and innovation, exploring diverse projects that enhance my knowledge and skills.</p>
-            <p style="color: aliceblue;">Notably, I've undertaken a project to design a Structural Health Monitoring System on FPGA, showcasing my passion for cutting-edge technology.</p>
-            <p style="color: aliceblue;">I've gained valuable experience through internships at the Neurocomputation Lab and the Karachi Development Authority, where I've delved into FPGA-accelerated computer vision and IT management.</p>
-            <p style="color: aliceblue;">My skills span Python, Verilog, VHDL, and more, equipping me to contribute effectively to technology-driven projects.</p>
-            <p style="color: aliceblue;">Beyond academics, I'm an advocate for positive social change through technology, engaging in community initiatives to make a meaningful impact.</p>
-            <p style="color: aliceblue;">Welcome to my digital space, where my journey and projects come together to shape a dynamic and purposeful narrative. -->
-
-
-
-            </p>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Computer Engineering graduate student at CSUN</p>
+          <h1>FPGA Design &amp; Verification Engineer.</h1>
+          <p class="lead">
+            MS Computer Engineering student at CSUN focused on RTL design, SystemVerilog/UVM verification, FPGA implementation, and hardware debugging.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn secondary" href="Resume__Muhammad_Umar.pdf" download>Download Resume</a>
+            <a class="btn secondary" href="https://www.linkedin.com/in/umarcis" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
-          
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  
-
-  <section id="education" class="py-5 education-section">
-    <div class="container">
-      <!-- <h2 class="text-center">Education</h2>
-      <hr style= "border-color: rgb(3, 48, 87);"> -->
-      <br>
-      <br><br><br><br><br><br><br>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h4 class="card-title">NED University of Engineering & Technology Karachi,Pakistan</h4>
-              <p class="card-text">Bachelors in Computer Systems Engineering</p>
-              <p class="card-text">Cumulative GPA: 3.179/4.</p>
-              <p class="card-text">2019 - 2023</p>
-              <!-- <p class="card-text">Karachi, Pakistan</p> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h4 class="card-title">Government Degree Science & Commerce College Malir Cantt</h4>
-              <p class="card-text">Intermediate (Pre-Engineering)</p>
-              
-              <p class="card-text">Grade: A-1</p>
-              <p class="card-text">2017 - 2019</p>
-            </div>
-          </div>
-        </div>
-       
-      </div>
-      
-    </div>
-  </section>
-  
-  
-
-  <section id="experience" class="py-5">
-    <div class="container">
-      <h1 class="text-center">Work Experience</h1>
-      <hr style= "border-color: rgb(3, 48, 87);">
-
-       <div class="col-md-8">
-                <h4>Design Engineer</h4>
-                <p><b>CoMira Solutions Inc.(Offshore Design Center)</b></p>
-                <p>Dec 2023 – Present</p>
-                <p>Karachi, Sindh, Pakistan</p>
-                <ul>
-                  <li>Trained on combinational, sequential, and FSM logics.</li>
-                  <li>Verified digital system design through UVM.</li>
-                  <li>Developed tests for Ethernet projects, specifically for MAC (Media Access Control) and PCS (Physical Coding
-Sublayer).</li>     
-                <li>Studied and implemented various clauses of the IEEE 802.3 specification, focusing on MAC and PCS
-functionalities.</li>
-                <li>Conducted detailed analysis and verification of MAC and PCS modules to ensure compliance with the IEEE 802.3
-standards.</li>
-                  </ul>
-            </div>
-
-
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-8">
-                <h4>FPGA-accelerated Computer Vision Intern</h4>
-                <p>Neurocomputation Lab, National Center of Artificial Intelligence</p>
-                <p>Nov 2022 – Present</p>
-                <p>Karachi, Sindh, Pakistan</p>
-                <ul>
-                    <li>Applied Conventional Computer Vision Techniques for Edge Detection.</li>
-                    <li>Deployment of Deep Neural Network (DNN) on PYNQ Board.</li>
-                    <li>Prototyping of Deep Neural Network on FPGA using MATLAB.</li>
-                  </ul>
-            </div>
-            <!-- <div class="col-md-3">
-                <img src="fyp.jpg" class="logo-image1" alt="">
-            </div> -->
-          
-          
-        <!-- </div>
-        <hr style= "border-color: rgb(3, 48, 87);">
-        </div>
-      
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-8">
-                <h4>Computer Systems Intern</h4>
-                <p>Karachi Development Authority (KDA) – IT Department</p>
-                <p>Aug 2022 – Oct 2022</p>
-                <p>Karachi, Sindh, Pakistan</p>
-                <ul>
-                  <li>Experienced the Management System and Payroll systems.</li>
-                  <li>Gained insights into the operation of servers supporting the entire department.</li>
-                  <li>Acquired knowledge and skills related to IT management and operations.</li>
-                  </ul>
-            </div>
-            <!-- <div class="col-md-3">
-                <img src="NCL.jpg" class="logo-image2" alt="">
-            </div>
-          </div>
-          
-        </div>
-      </div> --> -->
-      <hr style= "border-color: rgb(3, 48, 87);">
-      <div class="row">
-        <div class="col-md-12">
-          
-          <div class="row">
-            <div class="col-md-8">
-                <p><b>Bachelor’s Thesis & Final Year Project (linked)</b></p>
-                <h4>Design of Structural Health Monitoring System on FPGA</h4>
-                <p>NED, Karachi</p>
-                <p>Nov 2022 – Aug 2023</p>
-                
-                <ul>
-                    <li>Utilized Verilog to implement conventional computer vision techniques for edge detection.</li>
-                    <li>Trained a custom YOLOv7 model using transfer learning techniques specifically tailored to a
-                      dataset of cracks.</li>
-                    <li>Utilized PYNQ Z1 board for prototyping a deep neural network for FPGA-based inference.</li>
-                    <li>Acquired a good understanding of Register Transfer Level (RTL) designs using Verilog and
-                      VHDL during the course of my final year project
-                      .</li>
-                  </ul>
-            </div>
-            <div class="col-md-3">
-                <img src="#" class="logo-image3" alt="">
-            </div>
-          
-        </div>
-        </div>
-        <div class="col-md-12">
-            <hr style= "border-color: rgb(3, 48, 87);">
-
-            <!-- <div class="row">
-                <div class="col-md-8">
-                <h4>Salesperson</h4>
-                <p>Mutarreb Enterprises</p>
-                <p>May 2014 - Nov 2014</p>
-                <p>Karachi, Pakistan</p>
-                <ul>
-                    <li>Demonstrated phone features to customers, followed up after purchases to ensure satisfaction.</li>
-                </ul>
-                </div>
-                <div class="col-md-3">
-                    <img src="https://media.licdn.com/dms/image/C4D2DAQHn5xy853-DDA/profile-treasury-image-shrink_800_800/0/1680181270443?e=1693962000&v=beta&t=PH3rdsru-7rex2J4SJIU_BsLSFHDZSr9mT7iFJx90I8" class="logo-image3" alt="">
-                </div>
-            </div> -->
-        </div>
-      </div>
-    </div>
-  </section>
-  
-
-  <section id="projects" class="py-5">
-    <div class="container">
-      <h1 class="text-center">Projects</h1>
-      <hr style= "border-color: rgb(3, 48, 87);">
-      <div class="row">
-        <div class="col-md-6">
-          <a href="https://github.com/umarcis/CumulativeGradePointAverage">Developed ML model for Prediction of Cumulative Grade Point Average</a>
-          
-    
-
-        
-        </div>
-        
-          <div class="col-md-6">
-            <a href="https://github.com/umarcis/ElevatorSystem">Developed Design of Elevator System using Verilog on Nexys-7 Board</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <a href="https://github.com/umarcis">Developed House Rental Management System using HTML CSS and MySQL</a>
-          
-        </div>
-        
-        <div class="col-md-6">
-          <a href="https://github.com/umarcis/PasswordLockSystem">Password-based Lock Control System using Microcontroller </a>
-          
-        </div>
-      </div>
-    </div>
-  </section>
-  
-
-  <section id="certificates" class="py-5">
-    <div class="container">
-      <h2 class="text-center">Certificates</h2>
-      <hr style= "border-color: rgb(3, 48, 87);">
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <img src="imageprocessingcertificate.jpg" class="card-img-top" alt="Certificate 1">
-            <div class="card-body">
-              <h5 class="card-title">Introduction to Image Processing</h5>
-              <p class="card-text">By MathWorks</p>
-              <a href="https://www.coursera.org/account/accomplishments/verify/XPCFQVDQWT8H?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" class="btn btn-primary">View Certificate</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <img src="understandingResearchMethodCertificate.jpg" class="card-img-top" alt="Certificate 2">
-            <div class="card-body">
-              <h5 class="card-title">Understanding Research Methods</h5>
-              <p class="card-text">By University of London</p>
-              <a href="https://www.coursera.org/account/accomplishments/verify/6ZTLWEVUYF86?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" class="btn btn-primary">View Certificate</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <img src="rpi.jpg" class="card-img-top" alt="Certificate 3">
-            <div class="card-body">
-              <h5 class="card-title">The Raspberry Pi Platform and Python Programming for the Raspberry Pi</h5>
-              <p class="card-text">By University of California, Irvine</p>
-              <a href="https://coursera.org/share/1a9d297ccc945a651bbd64e326407f48" class="btn btn-primary">View Certificate</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <img src="sql.jpg" class="card-img-top" alt="Certificate 4">
-            <div class="card-body">
-              <h5 class="card-title">The Structured Query Language (SQL)</h5>
-              <p class="card-text">By University of Colorado Boulder</p>
-              <a href="https://www.coursera.org/account/accomplishments/verify/G4MUT4Y8CFDH?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" class="btn btn-primary">View Certificate</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="dsa.jpg" class="card-img-top" alt="Certificate 6">
-                <div class="card-body">
-                    <h5 class="card-title">Python Data Structures</h5>
-                    <p class="card-text">By Coursera Project Network</p>
-                    <a href="https://coursera.org/verif y/QEKRF9QU69A2" class="btn btn-primary">View Certificate</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="linux.jpg" class="card-img-top" alt="Certificate 7">
-                <div class="card-body">
-                    <h5 class="card-title">Command Line in Linux</h5>
-                    <p class="card-text">By Coursera Project Network</p>
-                    <a href="https://coursera.org/verif y/K262K6RTQDKC" class="btn btn-primary">View Certificate</a>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="row">
-        <!-- Existing certificates -->
-        <!-- Add new certificate -->
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="wiresharkcertificate.jpg" class="card-img-top" alt="Certificate 8">
-                <div class="card-body">
-                    <h5 class="card-title">Wireshark for Beginners: TCP IP Protocol
-                      Fundamentals</h5>
-                    <p class="card-text">By Coursera Project Network</p>
-                    <a href="https://coursera.org/verify/DHJ3E95E4PTG" class="btn btn-primary">View Certificate</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-              <img src="flaskcertificate.jpg" class="card-img-top" alt="Certificate 5">
-              <div class="card-body">
-                <h5 class="card-title">Create Your First Web App with Python and Flask</h5>
-                <p class="card-text">By Coursera Project Network</p>
-                <a href="https://coursera.org/share/d205a07293514253f1c6c3f711bc212a" class="btn btn-primary">View Certificate</a>
-              </div>
-            </div>
-          </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="pythoncertificate.jpg" class="card-img-top" alt="Certificate 9">
-                <div class="card-body">
-                    <h5 class="card-title">Programming for Everybody (Getting Started with
-                      Python)</h5>
-                    <p class="card-text">By University of Michigan</p>
-                    <a href="https://coursera.org/verify/WA7Y88S4WCPQ" class="btn btn-primary">View Certificate</a>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-      </div>
-    </div>
-  </section>
-  <section id="contact" class="py-5" style="background-color: #f4f4f4;">
-    <div class="container">
-      <h1 class="text-center">Contact Me</h1>
-      <hr style="border-color: rgb(3, 48, 87);">
-  
-      <div class="row">
-        <div class="col-md-6">
-          <h4>Contact Information</h4>
-          <ul>
-            <li>Phone: +92 300 9219543</li>
-            <li>Email: umarcis@outlook.com</li>
-            <li>Personal Website: <a href="https://umarcis.github.io/">https://umarcis.github.io/</a></li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/umarcis">LinkedIn Profile</a></li>
-            <li>GitHub: <a href="https://github.com/umarcis">GitHub Profile</a></li>
-            <li>Medium: <a href="https://medium.com/@mumarbakht">Medium Profile</a></li>
+          <ul class="chips" aria-label="Core strengths">
+            <li>SystemVerilog/UVM</li>
+            <li>RTL Design</li>
+            <li>UVM RAL</li>
+            <li>Functional/Code Coverage</li>
+            <li>STA</li>
+            <li>OOP</li>
+            <li>Computer Architecture</li>
+            <li>FPGA Implementation</li>
+            <li>Vivado &amp; Vitis HLS</li>
+            <li>SystemRDL</li>
+            <li>Computer Vision on FPGA</li>
           </ul>
         </div>
-        <div class="col-md-6">
-          <!-- You can add a contact form here if you want -->
-          <!-- For example:-->
-          <form action="https://formspree.io/f/xnqkvapj" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+
+        <aside class="profile-panel" aria-label="Portfolio highlights">
+          <div class="profile-top">
+            <strong>Muhammad Umar</strong>
+            <span>Northridge, CA | Available for FPGA, ASIC, RTL design, verification, and embedded systems roles</span>
+          </div>
+          <div class="metric-list">
+            <div class="metric">
+              <strong>3.7/4.0</strong>
+              <span>MS Computer Engineering CGPA at CSUN</span>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+            <div class="metric">
+              <strong>UVM + RTL</strong>
+              <span>Verification, simulation, coverage, and hardware debugging</span>
             </div>
-            <!-- New contact number field -->
-            <div class="form-group">
-                <label for="contact">Contact Number</label>
-                <input type="text" class="form-control" id="contact" name="contact">
+            <div class="metric">
+              <strong>9 Certificates</strong>
+              <span>Python, Linux, SQL, Wireshark, image processing, research, and IoT foundations</span>
             </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-        
-          
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container grid two">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>
+            I am a Computer Engineering graduate student at California State University, Northridge, with professional and academic experience in FPGA design, digital verification, and hardware-focused software workflows.
+          </p>
+        </div>
+        <div>
+          <p>
+            My background includes design verification work at CoMira Solutions, teaching and lab support for digital design courses at CSUN, IT support for the Mike Curb College of Arts, Media, and Communication, and FPGA-based computer vision research through my bachelor's thesis.
+          </p>
+          <p>
+            I am strongest where digital systems need both technical depth and careful validation: writing RTL, creating UVM testbenches, reading specifications, debugging waveforms, building register models, and turning hardware ideas into working prototypes.
+          </p>
         </div>
       </div>
+    </section>
+
+    <section id="skills" class="alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Technical Strengths</h2>
+          <p>Focused skills for FPGA, ASIC, SoC, verification, and hardware-oriented software projects.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>FPGA, ASIC &amp; SoC</h3>
+            <p>Architecture, RTL design, simulation, integration, testing, and FPGA implementation.</p>
+            <div class="skill-list">
+              <span>Verilog</span>
+              <span>SystemVerilog</span>
+              <span>VHDL</span>
+              <span>RTL</span>
+              <span>Place &amp; Route</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Verification</h3>
+            <p>Digital design verification using modern testbench, coverage, and debugging workflows.</p>
+            <div class="skill-list">
+              <span>UVM</span>
+              <span>RAL</span>
+              <span>Constrained Random</span>
+              <span>Functional Coverage</span>
+              <span>Waveform Debug</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Tools &amp; Platforms</h3>
+            <p>Hands-on experience with EDA tools, FPGA boards, scripting, and project workflows.</p>
+            <div class="skill-list">
+              <span>Vivado</span>
+              <span>Vitis HLS</span>
+              <span>QuestaSim</span>
+              <span>Synopsys VCS</span>
+              <span>Git</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Protocols &amp; Interfaces</h3>
+            <p>Coursework and project experience with common digital interfaces and communication concepts.</p>
+            <div class="skill-list">
+              <span>APB</span>
+              <span>SPI</span>
+              <span>I2C</span>
+              <span>UART</span>
+              <span>Basic Ethernet</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Programming</h3>
+            <p>Software and scripting skills used for modeling, automation, verification, and prototyping.</p>
+            <div class="skill-list">
+              <span>Python</span>
+              <span>C</span>
+              <span>MATLAB</span>
+              <span>SystemRDL</span>
+              <span>Jupyter</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>FPGA Boards</h3>
+            <p>Experience deploying and debugging designs on academic and research FPGA platforms.</p>
+            <div class="skill-list">
+              <span>Basys 3</span>
+              <span>Nexys-7</span>
+              <span>Zynq-7000</span>
+              <span>PYNQ-Z1</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="professional-experience">
+      <div class="container">
+        <div class="section-head">
+          <h2>Professional Experience</h2>
+          <p>Industry and research experience in design verification, FPGA development, specification study, and computer-vision acceleration.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">Dec 2023 - Dec 2024</div>
+            <div>
+              <h3>Design Verification Engineer</h3>
+              <p class="tagline">CoMira Solutions Inc.</p>
+              <ul>
+                <li>Completed structured training in combinational logic, sequential logic, and finite-state-machine design.</li>
+                <li>Contributed to digital design verification using UVM methodology.</li>
+                <li>Studied MAC and PCS fundamentals from the IEEE 802.3 specification and explored SystemRDL for verification automation.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Nov 2022 - Aug 2023</div>
+            <div>
+              <h3>FPGA Intern</h3>
+              <p class="tagline">Neurocomputation Lab, National Center of Artificial Intelligence</p>
+              <ul>
+                <li>Applied classical computer-vision techniques for edge detection and developed Verilog RTL.</li>
+                <li>Deployed deep neural networks on PYNQ and prototyped FPGA inference flows using MATLAB.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="university-experience" class="alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>University Experience</h2>
+          <p>CSUN roles focused on digital design instruction, student support, lab debugging, and campus technology service.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">Aug 2026 - Present</div>
+            <div>
+              <h3>Instructional Student Assistant - ECE 427/L: Digital Design with Verilog and SystemVerilog</h3>
+              <p class="tagline">California State University, Northridge</p>
+              <ul>
+                <li>Assist with theory and laboratory instruction in Verilog, SystemVerilog, RTL design, simulation, and FPGA implementation.</li>
+                <li>Support students with debugging, waveform analysis, design verification, digital-logic development, and lab evaluation.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Sep 2026 - Present</div>
+            <div>
+              <h3>IT Student Assistant - Mike Curb College of Arts, Media, and Communication</h3>
+              <p class="tagline">California State University, Northridge</p>
+              <ul>
+                <li>Provide technical support for faculty, staff, and students across hardware, software, and classroom technology.</li>
+                <li>Troubleshoot user issues, document resolutions, and support day-to-day IT operations.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Feb 2026 - May 2026</div>
+            <div>
+              <h3>Instructional Student Assistant - ECE 220/L: Theory of Digital Systems</h3>
+              <p class="tagline">California State University, Northridge</p>
+              <ul>
+                <li>Supported labs covering digital logic, combinational and sequential circuits, and Verilog fundamentals.</li>
+                <li>Helped students with simulations, debugging, lab exercises, and digital-design concepts.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head">
+          <h2>Education</h2>
+          <p>Graduate study in computer engineering with a strong foundation in digital systems and FPGA-based design.</p>
+        </div>
+        <div class="grid two">
+          <article class="card">
+            <h3>California State University, Northridge</h3>
+            <p><strong>Master of Science in Computer Engineering</strong></p>
+            <p>Northridge, CA | Jan 2025 - Present | CGPA: 3.7/4.0</p>
+            <p>Relevant coursework includes Digital Design with Verilog and SystemVerilog, System-on-Chip, Computer Architecture, Digital Electronics, Image Processing, Computer Arithmetic and Design, and Advanced Switching Theory.</p>
+          </article>
+          <article class="card">
+            <h3>NED University of Engineering and Technology</h3>
+            <p><strong>Bachelor's Thesis: Design of Structural Health Monitoring System on FPGA</strong></p>
+            <p>Oct 2019 - Aug 2023</p>
+            <p>Implemented FPGA-based edge detection using Verilog and trained/deployed a YOLOv7 model on PYNQ-Z1 for real-time crack detection.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected Projects</h2>
+          <p>Projects that show hardware design, verification, FPGA deployment, embedded systems, and computer-vision capability.</p>
+        </div>
+        <div class="grid three">
+          <article class="card project-card">
+            <h3>FIFO and ALU Verification Environment</h3>
+            <p>Designed an ALU and synchronous FIFO in SystemVerilog and verified the integrated design through a UVM environment with coverage, constrained-random testing, and corner-case validation.</p>
+            <div class="project-meta">
+              <span>SystemVerilog</span>
+              <span>UVM</span>
+              <span>Coverage</span>
+            </div>
+          </article>
+          <article class="card project-card">
+            <h3>AMBA APB Register Subsystem Verification</h3>
+            <p>Designed a configurable APB-based register subsystem and verified it using a UVM RAL environment with SystemRDL-based register modeling and documentation automation.</p>
+            <div class="project-meta">
+              <span>APB</span>
+              <span>UVM RAL</span>
+              <span>SystemRDL</span>
+            </div>
+          </article>
+          <article class="card project-card">
+            <h3>Structural Health Monitoring System on FPGA</h3>
+            <p>Built an FPGA-focused crack-detection project using Verilog-based edge detection and a YOLOv7 model deployed on PYNQ-Z1 for real-time computer-vision inference.</p>
+            <div class="project-meta">
+              <span>Verilog</span>
+              <span>PYNQ-Z1</span>
+              <span>YOLOv7</span>
+            </div>
+          </article>
+          <article class="card project-card">
+            <h3>Traffic Light Controller</h3>
+            <p>Designed a parameterized FSM-based traffic-light controller in SystemVerilog for highway, sub-highway, and train-crossing scenarios with configurable timing and sensor-driven behavior.</p>
+            <div class="project-meta">
+              <span>FSM</span>
+              <span>SystemVerilog</span>
+              <span>RTL</span>
+            </div>
+          </article>
+          <article class="card project-card">
+            <h3><a href="https://github.com/umarcis/ElevatorSystem" target="_blank" rel="noreferrer">Elevator System on Nexys-7</a></h3>
+            <p>Implemented a Verilog-based elevator controller, simulated the design in Vivado, and prepared the project for FPGA deployment on the Nexys-7 board.</p>
+            <div class="project-meta">
+              <span>Verilog</span>
+              <span>Vivado</span>
+              <span>Nexys-7</span>
+            </div>
+          </article>
+          <article class="card project-card">
+            <h3>Vending Machine FSM</h3>
+            <p>Created a Verilog finite-state-machine controller to model item selection, payment/input states, and transaction flow, then simulated and verified behavior in Vivado.</p>
+            <div class="project-meta">
+              <span>FSM</span>
+              <span>Verilog</span>
+              <span>Simulation</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Certificates</h2>
+          <p>Additional training that supports my technical foundation across programming, systems, networking, research, and image processing.</p>
+        </div>
+        <div class="grid three">
+          <article class="card certificate">
+            <h3>Introduction to Image Processing</h3>
+            <p>MathWorks</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/XPCFQVDQWT8H?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>Understanding Research Methods</h3>
+            <p>University of London</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/6ZTLWEVUYF86?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>The Raspberry Pi Platform and Python Programming for the Raspberry Pi</h3>
+            <p>University of California, Irvine</p>
+            <a href="https://coursera.org/share/1a9d297ccc945a651bbd64e326407f48" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>The Structured Query Language (SQL)</h3>
+            <p>University of Colorado Boulder</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/G4MUT4Y8CFDH?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>Python Data Structures</h3>
+            <p>Coursera Project Network</p>
+            <a href="https://coursera.org/verify/QEKRF9QU69A2" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>Command Line in Linux</h3>
+            <p>Coursera Project Network</p>
+            <a href="https://coursera.org/verify/K262K6RTQDKC" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>Wireshark for Beginners: TCP/IP Protocol Fundamentals</h3>
+            <p>Coursera Project Network</p>
+            <a href="https://coursera.org/verify/DHJ3E95E4PTG" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>Create Your First Web App with Python and Flask</h3>
+            <p>Coursera Project Network</p>
+            <a href="https://coursera.org/share/d205a07293514253f1c6c3f711bc212a" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+          <article class="card certificate">
+            <h3>Programming for Everybody: Getting Started with Python</h3>
+            <p>University of Michigan</p>
+            <a href="https://coursera.org/verify/WA7Y88S4WCPQ" target="_blank" rel="noreferrer">View Certificate</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-band">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>I am open to FPGA, ASIC, design verification, embedded systems, and hardware-focused software opportunities.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Email</h3>
+            <p><a href="mailto:umarcis@outlook.com">umarcis@outlook.com</a></p>
+          </div>
+          <div class="contact-card">
+            <h3>Phone</h3>
+            <p><a href="tel:+17472354010">+1 (747) 235-4010</a></p>
+          </div>
+          <div class="contact-card">
+            <h3>LinkedIn</h3>
+            <p><a href="https://www.linkedin.com/in/umarcis" target="_blank" rel="noreferrer">linkedin.com/in/umarcis</a></p>
+          </div>
+          <div class="contact-card">
+            <h3>GitHub</h3>
+            <p><a href="https://github.com/umarcis" target="_blank" rel="noreferrer">github.com/umarcis</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Muhammad Umar. Built for FPGA, verification, and computer engineering opportunities.</p>
     </div>
-  </section>
-  
-
-  <footer class="text-center py-3">
-    <p>&copy; 2023 Muhammad Umar</p>
   </footer>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    // Add your custom JavaScript code here
-  </script>
 </body>
 </html>
